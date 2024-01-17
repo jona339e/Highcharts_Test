@@ -1,0 +1,26 @@
+name: Generate PlantUML Diagrams
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  render-diagrams:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Install PlantUML
+        run: |
+          sudo apt update && sudo apt install plantuml
+
+      - name: Generate PlantUML Diagrams
+        run: |
+          plantuml ./diagrams/*.plantuml
+
+      - name: Upload Generated Images
+        uses: actions/upload-artifact@v3
+        with:
+          name: generated-images
+          path: ./diagrams/
