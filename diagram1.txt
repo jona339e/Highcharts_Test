@@ -1,0 +1,21 @@
+@startuml
+
+class Person {
+  name: String
+  age: int
+}
+
+class Student {
+  person: Person
+  className: String
+}
+
+class Teacher {
+  person: Person
+  subject: String
+}
+
+Person "1" --> "*" Student
+Person "1" --> "*" Teacher
+
+@enduml
